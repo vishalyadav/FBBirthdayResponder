@@ -12,15 +12,30 @@ $(document).ready(function() {
     // Additional init code here
     };
 	$("#login").click(function(){
-		FB.login(function(response) {
-			if(response.authResponse) {
-				testAPI();
-			}
-			else {
-				//login was cancelled
-			}
-		});
+    FB.getLoginStatus(function(response) {
+      if(response.status === 'connected') {
+        testAPI();
+      }
+      else if (response.status === 'not_authorized') {
+        dologin();
+      }
+      else {
+        dologin();
+      }
+    }, true);
+		
 	});
+
+  function dologin(){
+    FB.login(function(response) {
+      if(response.authResponse) {
+        testAPI();
+      }
+      else {
+        //login was cancelled
+      }
+    });
+  }
   // Load the SDK asynchronously
   (function(d){
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
