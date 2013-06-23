@@ -34,7 +34,7 @@ $(document).ready(function() {
       else {
         //login was cancelled
       }
-    });
+    }, {scope: 'user_birthday'});
   }
   // Load the SDK asynchronously
   (function(d){
