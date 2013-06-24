@@ -50,16 +50,17 @@ $(document).ready(function() {
             query: "SELECT read_stream FROM permissions WHERE uid = me()"
           },
             function(response) {
-              console.log(response[0].read_stream);   //indicates we are reading the stream
+              //console.log(response[0].read_stream);   //indicates we are reading the stream
               FB.api(
               {
                 method: "fql.query",
-                query: "SELECT post_id,message,comments FROM stream WHERE source_id = me() AND filter_key = 'others'"
+                query: "SELECT post_id,message,comments,created_time FROM stream WHERE source_id = me() AND filter_key = 'others' AND created_time <= " + ttt + " AND created_time >= " + testdate + "LIMIT 800"
               },
                   function(response) {
                     for(var i = 0; i < response.length; i++) {
                       if (response[i].message.length != 0) {
                         postids.push(response[i].post_id);
+                        console.log(response[i].created_time);
                       }
                     }
                     console.log(postids.length);
