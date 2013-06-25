@@ -16,6 +16,7 @@ $(document).ready(function() {
     FB.getLoginStatus(function(response) {
       if(response.status === 'connected') {
         $("#login").hide();
+        $("#respondbutton").show();
         $("#logout").show();
         alert('You\'re already logged in!');
       }
@@ -30,7 +31,7 @@ $(document).ready(function() {
 
   // Get birthday
   // 
-  $("#doeverything").click(function(){
+  $("#respondbutton").click(function(){
     FB.api(
     {
       method: "fql.query",
@@ -59,11 +60,15 @@ $(document).ready(function() {
             query: "SELECT read_stream, publish_stream FROM permissions WHERE uid = me()"
           },
             function(response) {
+              $("#respondbutton").hide();
               if(response[0].read_stream === "0" || response[0].publish_stream === "0") {
                 $("#login").show();
+                $("#respondbutton").hide();
+                $("#logout").hide();
                 FB.logout();
                 alert("We need your permission to respond to your friends. Please log in again.");
               }
+              else {
               FB.api(
               {
                 method: "fql.query",
@@ -82,6 +87,7 @@ $(document).ready(function() {
                     doResponse();
                   }
           );
+        }
         });
   });
   });
@@ -101,6 +107,7 @@ $(document).ready(function() {
     FB.login(function(response) {
       if(response.authResponse) {
         $("#login").hide();
+        $("#respondbutton").show();
         $("#logout").show();
       }
       else {
@@ -112,6 +119,8 @@ $(document).ready(function() {
   $("#logout").click(function() {
     FB.logout(function() {
       $("#login").show();
+      $("#respondbutton").hide();
+      $("#logout").hide();
     });
   });
 

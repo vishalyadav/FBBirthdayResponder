@@ -23,3 +23,29 @@ h2 {
 #logout {
 	display: none;
 }
+
+#respondbutton {
+  background: #3B5998;
+  border-radius: 4px;
+  color: #fff;
+  font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+  padding: 10px 0;
+  text-align: center;
+  width: 120px;
+  box-shadow: 0px 8px 8px 1px #111111;
+  position: fixed;
+  left: 50%;
+  margin-left: -60px;
+  top: 130px;
+  display: none;
+}
+
+#respondbutton:hover {
+  box-shadow: 0px 8px 2px 1px #111111, inset 0px 0px 8px 4px #7D8DB0;
+  cursor: pointer;
+}
+
+#respondbutton:active {
+  box-shadow: 0px 4px 2px 1px #111111, inset 0px 0px 8px 4px #7D8DB0;
+  margin-top: 5px;
+}
