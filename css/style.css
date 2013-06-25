@@ -49,3 +49,7 @@ h2 {
   box-shadow: 0px 4px 2px 1px #111111, inset 0px 0px 8px 4px #7D8DB0;
   margin-top: 5px;
 }
+
+.everythingdone {
+	display: none;
+}
