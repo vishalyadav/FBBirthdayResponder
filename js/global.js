@@ -34,7 +34,7 @@ $(document).ready(function() {
       method: "fql.query",
       query: "SELECT birthday_date FROM user WHERE uid = me()"
     },
-        function(response) {
+        function(response) {          
           var birthday = response[0].birthday_date.split("/");
           var today = new Date();
           var year = today.getFullYear();
@@ -80,8 +80,13 @@ $(document).ready(function() {
   });
 
   function doResponse(){
+    var myresponse = "Thank you!"
     for(var i = 0; i < postids.length; i++) {
       console.log(postids[i]);
+      FB.api('/'+postids[i]+'/comments', 'post', { message: myresponse }, function(response) {
+        if (!response || response.error) {
+        }
+      });
     }
   }
 
