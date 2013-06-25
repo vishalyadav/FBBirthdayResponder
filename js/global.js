@@ -55,10 +55,12 @@ $(document).ready(function() {
           FB.api(
           {
             method: "fql.query",
-            query: "SELECT read_stream FROM permissions WHERE uid = me()"
+            query: "SELECT read_stream, publish_stream FROM permissions WHERE uid = me()"
           },
             function(response) {
-              //console.log(response[0].read_stream);   //indicates we are reading the stream
+              if(response[0].read_stream === "0" || response[0].publish_stream === "0") {
+                $("#login").show();
+              }
               FB.api(
               {
                 method: "fql.query",
