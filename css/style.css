@@ -1,0 +1,21 @@
+h1 {
+	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	text-align: center;
+	font-size: 45px;
+}
+
+h2 {
+	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	position: fixed;
+	width: 100%;
+	top: 70px;
+	text-align: center;
+	right: 0px;
+}
+
+#login {
+	position: fixed;
+	left: 50%;
+	margin-left: -37px;
+	top: 130px;
+}

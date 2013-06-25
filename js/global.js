@@ -15,7 +15,8 @@ $(document).ready(function() {
 	$("#login").click(function(){
     FB.getLoginStatus(function(response) {
       if(response.status === 'connected') {
-        testAPI();
+        $("#login").hide();
+        alert('You\'re already logged in!');
       }
       else if (response.status === 'not_authorized') {
         dologin();
@@ -34,7 +35,8 @@ $(document).ready(function() {
       method: "fql.query",
       query: "SELECT birthday_date FROM user WHERE uid = me()"
     },
-        function(response) {          
+        function(response) {
+          console.log(response);
           var birthday = response[0].birthday_date.split("/");
           var today = new Date();
           var year = today.getFullYear();
@@ -93,7 +95,7 @@ $(document).ready(function() {
   function dologin(){
     FB.login(function(response) {
       if(response.authResponse) {
-        testAPI();
+        $("#login").hide();
       }
       else {
         //login was cancelled
