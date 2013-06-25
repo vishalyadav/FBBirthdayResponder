@@ -36,14 +36,20 @@ $(document).ready(function() {
     },
         function(response) {
           var birthday = response[0].birthday_date.split("/");
-          var startdate = new Date(birthday[2], birthday[0], birthday[1], 0, 0, 0, 0);
-          var enddate = new Date(birthday[2], birthday[0], birthday[1], 23, 59, 59, 999);
+          var today = new Date();
+          var year = today.getFullYear();
+          var startdate = new Date(year, birthday[0]-1, birthday[1], 0, 0, 0, 0);
+          if(today.getTime() < startdate.getTime()) {
+            year = year-1;
+            startdate.setFullYear(year);
+          }
+          var enddate = new Date(year, birthday[0]-1, birthday[1], 23, 59, 59, 999);
           startdate = Math.round(startdate.getTime()/1000);
           enddate = Math.round(enddate.getTime()/1000);
-          var testdate = new Date(2013, 5, 16);
-          testdate = Math.round(testdate.getTime()/1000);
-          ttt = new Date(2013, 5, 16, 23, 59, 59, 999);
-          ttt = Math.round(ttt.getTime()/1000);
+          //var testdate = new Date(2013, 5, 16);
+          //testdate = Math.round(testdate.getTime()/1000);
+          //ttt = new Date(2013, 5, 16, 23, 59, 59, 999);
+          //ttt = Math.round(ttt.getTime()/1000);
           FB.api(
           {
             method: "fql.query",
@@ -54,7 +60,7 @@ $(document).ready(function() {
               FB.api(
               {
                 method: "fql.query",
-                query: "SELECT post_id,message,comments,created_time FROM stream WHERE source_id = me() AND filter_key = 'others' AND created_time <= " + ttt + " AND created_time >= " + testdate + "LIMIT 800"
+                query: "SELECT post_id,message,comments,created_time FROM stream WHERE source_id = me() AND filter_key = 'others' AND created_time <= " + enddate + " AND created_time >= " + startdate + "LIMIT 800"
               },
                   function(response) {
                     for(var i = 0; i < response.length; i++) {
@@ -63,6 +69,8 @@ $(document).ready(function() {
                         console.log(response[i].created_time);
                       }
                     }
+                    console.log(startdate);
+                    console.log(enddate);
                     console.log(postids.length);
                     doResponse();
                   }
@@ -72,7 +80,9 @@ $(document).ready(function() {
   });
 
   function doResponse(){
-    console.log(postids[0]);
+    for(var i = 0; i < postids.length; i++) {
+      console.log(postids[i]);
+    }
   }
 
   function dologin(){
