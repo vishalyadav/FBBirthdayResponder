@@ -19,3 +19,7 @@ h2 {
 	margin-left: -37px;
 	top: 130px;
 }
+
+#logout {
+	display: none;
+}

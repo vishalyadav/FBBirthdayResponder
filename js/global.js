@@ -16,6 +16,7 @@ $(document).ready(function() {
     FB.getLoginStatus(function(response) {
       if(response.status === 'connected') {
         $("#login").hide();
+        $("#logout").show();
         alert('You\'re already logged in!');
       }
       else if (response.status === 'not_authorized') {
@@ -100,6 +101,7 @@ $(document).ready(function() {
     FB.login(function(response) {
       if(response.authResponse) {
         $("#login").hide();
+        $("#logout").show();
       }
       else {
         //login was cancelled
