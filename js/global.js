@@ -60,6 +60,8 @@ $(document).ready(function() {
             function(response) {
               if(response[0].read_stream === "0" || response[0].publish_stream === "0") {
                 $("#login").show();
+                FB.logout();
+                alert("We need your permission to respond to your friends. Please log in again.");
               }
               FB.api(
               {
@@ -104,6 +106,13 @@ $(document).ready(function() {
       }
     }, {scope: 'user_birthday, read_stream, publish_stream'});
   }
+
+  $("#logout").click(function() {
+    FB.logout(function() {
+      $("#login").show();
+    });
+  });
+
   // Load the SDK asynchronously
   (function(d){
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
