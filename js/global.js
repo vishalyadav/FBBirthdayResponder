@@ -81,7 +81,7 @@ $(document).ready(function() {
                       if (response[i].message.length != 0) {
                         postids.push(response[i].post_id);
                         console.log(response[i].created_time);
-                        $("#imagegrid").append('<img src="https://graph.facebook.com/'+response[i].actor_id+'/picture">');
+                        $("#imagegrid").append('<a href="https://www.facebook.com/'+response[i].actor_id+'" target="_blank"><img src="https://graph.facebook.com/'+response[i].actor_id+'/picture"></a>');
                       }
                     }
                     console.log(startdate);
