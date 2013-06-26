@@ -40,7 +40,7 @@ $(document).ready(function() {
     },
         function(response) {
           $("#respondbutton").hide();
-          console.log(response);
+          //console.log(response);
           var birthday = response[0].birthday_date.split("/");
           var today = new Date();
           var year = today.getFullYear();
@@ -82,15 +82,15 @@ $(document).ready(function() {
                         var lower = response[i].message.toLowerCase();
                         if(lower.indexOf("birthday") > -1 || lower.indexOf("bday") > -1 || lower.indexOf("happy") > -1 || lower.indexOf("anniversary") > -1) {
                           postids.push(response[i].post_id);
-                          console.log(response[i].created_time);
-                          console.log(response[i].comment_info);
+                          //console.log(response[i].created_time);
+                          //console.log(response[i].comment_info);
                           $("#imagegrid").append('<a href="https://www.facebook.com/'+response[i].actor_id+'" target="_blank"><img src="https://graph.facebook.com/'+response[i].actor_id+'/picture" width="30" height="30"></a>');
                         }
                       }
                     }
-                    console.log(startdate);
-                    console.log(enddate);
-                    console.log(postids.length);
+                    //console.log(startdate);
+                    //console.log(enddate);
+                    //console.log(postids.length);
                     doResponse();
                   }
           );
@@ -102,7 +102,7 @@ $(document).ready(function() {
   function doResponse(){
     var myresponse = "Thank you!"
     for(var i = 0; i < postids.length; i++) {
-      console.log(postids[i]);
+      //console.log(postids[i]);
       FB.api('/'+postids[i]+'/comments', 'post', { message: myresponse }, function(response) {
         if (!response || response.error) {
         }
