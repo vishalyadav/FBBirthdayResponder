@@ -39,6 +39,7 @@ $(document).ready(function() {
       query: "SELECT birthday_date FROM user WHERE uid = me()"
     },
         function(response) {
+          $("#respondbutton").hide();
           console.log(response);
           var birthday = response[0].birthday_date.split("/");
           var today = new Date();
@@ -61,7 +62,6 @@ $(document).ready(function() {
             query: "SELECT read_stream, publish_stream FROM permissions WHERE uid = me()"
           },
             function(response) {
-              $("#respondbutton").hide();
               $("h2").hide();
               if(response[0].read_stream === "0" || response[0].publish_stream === "0") {
                 $("#login").show();
@@ -74,14 +74,18 @@ $(document).ready(function() {
               FB.api(
               {
                 method: "fql.query",
-                query: "SELECT post_id,message,comments,created_time,actor_id FROM stream WHERE source_id = me() AND filter_key = 'others' AND created_time <= " + enddate + " AND created_time >= " + startdate + "LIMIT 800"
+                query: "SELECT post_id,message,comment_info,created_time,actor_id FROM stream WHERE source_id = me() AND filter_key = 'others' AND created_time <= " + enddate + " AND created_time >= " + startdate + "LIMIT 800"
               },
                   function(response) {
                     for(var i = 0; i < response.length; i++) {
-                      if (response[i].message.length != 0) {
-                        postids.push(response[i].post_id);
-                        console.log(response[i].created_time);
-                        $("#imagegrid").append('<a href="https://www.facebook.com/'+response[i].actor_id+'" target="_blank"><img src="https://graph.facebook.com/'+response[i].actor_id+'/picture"></a>');
+                      if (response[i].message.length != 0 && response[i].comment_info.comment_count < 1) {
+                        var lower = response[i].message.toLowerCase();
+                        if(lower.indexOf("birthday") > -1 || lower.indexOf("bday") > -1 || lower.indexOf("happy") > -1 || lower.indexOf("anniversary") > -1) {
+                          postids.push(response[i].post_id);
+                          console.log(response[i].created_time);
+                          console.log(response[i].comment_info);
+                          $("#imagegrid").append('<a href="https://www.facebook.com/'+response[i].actor_id+'" target="_blank"><img src="https://graph.facebook.com/'+response[i].actor_id+'/picture" width="30" height="30"></a>');
+                        }
                       }
                     }
                     console.log(startdate);
@@ -106,6 +110,8 @@ $(document).ready(function() {
     }
     $("#numberwishes").html(postids.length);
     $(".everythingdone").show();
+    $("#imagegrid").show();
+    $("#logout").hide();
   }
 
   function dologin(){
@@ -128,6 +134,7 @@ $(document).ready(function() {
       $("#logout").hide();
       $("h2").show();
       $(".everythingdone").hide();
+      $("#imagegrid").hide();
     });
   });
 
