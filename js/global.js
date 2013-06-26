@@ -12,6 +12,7 @@ $(document).ready(function() {
     // Additional init code here
     };
   var postids = [];
+  var accesstoken;
 	$("#login").click(function(){
     FB.getLoginStatus(function(response) {
       if(response.status === 'connected') {
@@ -73,13 +74,14 @@ $(document).ready(function() {
               FB.api(
               {
                 method: "fql.query",
-                query: "SELECT post_id,message,comments,created_time FROM stream WHERE source_id = me() AND filter_key = 'others' AND created_time <= " + enddate + " AND created_time >= " + startdate + "LIMIT 800"
+                query: "SELECT post_id,message,comments,created_time,actor_id FROM stream WHERE source_id = me() AND filter_key = 'others' AND created_time <= " + enddate + " AND created_time >= " + startdate + "LIMIT 800"
               },
                   function(response) {
                     for(var i = 0; i < response.length; i++) {
                       if (response[i].message.length != 0) {
                         postids.push(response[i].post_id);
                         console.log(response[i].created_time);
+                        $("#imagegrid").append('<img src="https://graph.facebook.com/'+response[i].actor_id+'/picture">');
                       }
                     }
                     console.log(startdate);
