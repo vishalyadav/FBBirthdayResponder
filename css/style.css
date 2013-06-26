@@ -22,6 +22,11 @@ h2 {
 
 #logout {
 	display: none;
+	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	text-align: center;
+	width: 100%;
+	position: fixed;
+	bottom: 40px;
 }
 
 #respondbutton {
@@ -51,5 +56,22 @@ h2 {
 }
 
 .everythingdone {
+	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	font-size: 22px;
 	display: none;
+	text-align: center;
+}
+
+#congrats {
+	font-size: 26px;
+	position: fixed;
+	top: 90px;
+	width: 100%;
+	right: 1px;
+}
+
+#sayonaratext {
+	position: fixed;
+	bottom: 100px;
+	width: 100%;
 }

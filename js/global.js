@@ -61,6 +61,7 @@ $(document).ready(function() {
           },
             function(response) {
               $("#respondbutton").hide();
+              $("h2").hide();
               if(response[0].read_stream === "0" || response[0].publish_stream === "0") {
                 $("#login").show();
                 $("#respondbutton").hide();
@@ -123,6 +124,8 @@ $(document).ready(function() {
       $("#login").show();
       $("#respondbutton").hide();
       $("#logout").hide();
+      $("h2").show();
+      $(".everythingdone").hide();
     });
   });
 
