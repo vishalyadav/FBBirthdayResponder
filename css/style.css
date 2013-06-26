@@ -1,0 +1,81 @@
+h1 {
+	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	text-align: center;
+	font-size: 45px;
+}
+
+h2 {
+	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	position: fixed;
+	width: 100%;
+	top: 70px;
+	text-align: center;
+	right: 0px;
+}
+
+#login {
+	position: fixed;
+	left: 50%;
+	margin-left: -37px;
+	top: 130px;
+}
+
+#logout {
+	display: none;
+	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	text-align: center;
+	width: 100%;
+	position: fixed;
+	bottom: 40px;
+}
+
+#respondbutton {
+  background: #3B5998;
+  border-radius: 4px;
+  color: #fff;
+  font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+  padding: 10px 0;
+  text-align: center;
+  width: 120px;
+  box-shadow: 0px 8px 8px 1px #111111;
+  position: fixed;
+  left: 50%;
+  margin-left: -60px;
+  top: 130px;
+  display: none;
+}
+
+#respondbutton:hover {
+  box-shadow: 0px 8px 2px 1px #111111, inset 0px 0px 8px 4px #7D8DB0;
+  cursor: pointer;
+}
+
+#respondbutton:active {
+  box-shadow: 0px 4px 2px 1px #111111, inset 0px 0px 8px 4px #7D8DB0;
+  margin-top: 5px;
+}
+
+.everythingdone {
+	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	font-size: 22px;
+	display: none;
+	text-align: center;
+}
+
+#congrats {
+	font-size: 26px;
+	position: fixed;
+	top: 90px;
+	width: 100%;
+	right: 1px;
+}
+
+#sayonaratext {
+	position: fixed;
+	bottom: 100px;
+	width: 100%;
+}
+
+#imagegrid {
+	padding: 20px;
+}
